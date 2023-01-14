@@ -10,12 +10,15 @@
 		5B074B522972DB30007AD53D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B074B512972DB30007AD53D /* AppDelegate.swift */; };
 		5B074B542972DB30007AD53D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B074B532972DB30007AD53D /* SceneDelegate.swift */; };
 		5B074B562972DB30007AD53D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B074B552972DB30007AD53D /* ViewController.swift */; };
-		5B074B592972DB30007AD53D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B074B572972DB30007AD53D /* Main.storyboard */; };
 		5B074B5B2972DB32007AD53D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B074B5A2972DB32007AD53D /* Assets.xcassets */; };
 		5B074B5E2972DB32007AD53D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B074B5C2972DB32007AD53D /* LaunchScreen.storyboard */; };
 		5B074B692972DB32007AD53D /* CourseWorkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B074B682972DB32007AD53D /* CourseWorkTests.swift */; };
 		5B074B732972DB32007AD53D /* CourseWorkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B074B722972DB32007AD53D /* CourseWorkUITests.swift */; };
 		5B074B752972DB32007AD53D /* CourseWorkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B074B742972DB32007AD53D /* CourseWorkUITestsLaunchTests.swift */; };
+		5B074B822972DCDA007AD53D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B074B812972DCDA007AD53D /* LoginViewController.swift */; };
+		5B074B852972DD2F007AD53D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5B074B842972DD2F007AD53D /* SnapKit */; };
+		5B074B882972DD61007AD53D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5B074B872972DD61007AD53D /* Kingfisher */; };
+		5B074B8A2972DDD2007AD53D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B074B892972DDD2007AD53D /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +43,6 @@
 		5B074B512972DB30007AD53D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B074B532972DB30007AD53D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		5B074B552972DB30007AD53D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5B074B582972DB30007AD53D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5B074B5A2972DB32007AD53D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B074B5D2972DB32007AD53D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5B074B5F2972DB32007AD53D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +51,8 @@
 		5B074B6E2972DB32007AD53D /* CourseWorkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CourseWorkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B074B722972DB32007AD53D /* CourseWorkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseWorkUITests.swift; sourceTree = "<group>"; };
 		5B074B742972DB32007AD53D /* CourseWorkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseWorkUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5B074B812972DCDA007AD53D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5B074B892972DDD2007AD53D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B074B882972DD61007AD53D /* Kingfisher in Frameworks */,
+				5B074B852972DD2F007AD53D /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,10 +108,11 @@
 				5B074B512972DB30007AD53D /* AppDelegate.swift */,
 				5B074B532972DB30007AD53D /* SceneDelegate.swift */,
 				5B074B552972DB30007AD53D /* ViewController.swift */,
-				5B074B572972DB30007AD53D /* Main.storyboard */,
 				5B074B5A2972DB32007AD53D /* Assets.xcassets */,
 				5B074B5C2972DB32007AD53D /* LaunchScreen.storyboard */,
 				5B074B5F2972DB32007AD53D /* Info.plist */,
+				5B074B812972DCDA007AD53D /* LoginViewController.swift */,
+				5B074B892972DDD2007AD53D /* RegisterViewController.swift */,
 			);
 			path = CourseWork;
 			sourceTree = "<group>";
@@ -143,6 +150,10 @@
 			dependencies = (
 			);
 			name = CourseWork;
+			packageProductDependencies = (
+				5B074B842972DD2F007AD53D /* SnapKit */,
+				5B074B872972DD61007AD53D /* Kingfisher */,
+			);
 			productName = CourseWork;
 			productReference = 5B074B4E2972DB30007AD53D /* CourseWork.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +226,10 @@
 				Base,
 			);
 			mainGroup = 5B074B452972DB30007AD53D;
+			packageReferences = (
+				5B074B832972DD2F007AD53D /* XCRemoteSwiftPackageReference "SnapKit" */,
+				5B074B862972DD61007AD53D /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 5B074B4F2972DB30007AD53D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,7 +248,6 @@
 			files = (
 				5B074B5E2972DB32007AD53D /* LaunchScreen.storyboard in Resources */,
 				5B074B5B2972DB32007AD53D /* Assets.xcassets in Resources */,
-				5B074B592972DB30007AD53D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +272,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B074B822972DCDA007AD53D /* LoginViewController.swift in Sources */,
+				5B074B8A2972DDD2007AD53D /* RegisterViewController.swift in Sources */,
 				5B074B562972DB30007AD53D /* ViewController.swift in Sources */,
 				5B074B522972DB30007AD53D /* AppDelegate.swift in Sources */,
 				5B074B542972DB30007AD53D /* SceneDelegate.swift in Sources */,
@@ -297,14 +313,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5B074B572972DB30007AD53D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5B074B582972DB30007AD53D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5B074B5C2972DB32007AD53D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -442,7 +450,6 @@
 				INFOPLIST_FILE = CourseWork/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -470,7 +477,6 @@
 				INFOPLIST_FILE = CourseWork/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -602,6 +608,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5B074B832972DD2F007AD53D /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				branch = 5.6.0;
+				kind = branch;
+			};
+		};
+		5B074B862972DD61007AD53D /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5B074B842972DD2F007AD53D /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B074B832972DD2F007AD53D /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		5B074B872972DD61007AD53D /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B074B862972DD61007AD53D /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5B074B462972DB30007AD53D /* Project object */;
 }
