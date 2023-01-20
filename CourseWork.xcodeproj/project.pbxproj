@@ -19,6 +19,10 @@
 		5B074B852972DD2F007AD53D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5B074B842972DD2F007AD53D /* SnapKit */; };
 		5B074B882972DD61007AD53D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5B074B872972DD61007AD53D /* Kingfisher */; };
 		5B074B8A2972DDD2007AD53D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B074B892972DDD2007AD53D /* RegisterViewController.swift */; };
+		5B24153D297B014900805277 /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B24153C297B014900805277 /* MainTabbarViewController.swift */; };
+		5B24153F297B019E00805277 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B24153E297B019E00805277 /* HomeViewController.swift */; };
+		5B241541297B021700805277 /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B241540297B021700805277 /* FavouriteViewController.swift */; };
+		5B241547297B040E00805277 /* TweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B241546297B040E00805277 /* TweetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,10 @@
 		5B074B742972DB32007AD53D /* CourseWorkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseWorkUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5B074B812972DCDA007AD53D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5B074B892972DDD2007AD53D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		5B24153C297B014900805277 /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewController.swift; sourceTree = "<group>"; };
+		5B24153E297B019E00805277 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		5B241540297B021700805277 /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
+		5B241546297B040E00805277 /* TweetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +113,8 @@
 		5B074B502972DB30007AD53D /* CourseWork */ = {
 			isa = PBXGroup;
 			children = (
+				5B241545297B03E000805277 /* Views */,
+				5B24153A297B00E000805277 /* Controllers */,
 				5B074B512972DB30007AD53D /* AppDelegate.swift */,
 				5B074B532972DB30007AD53D /* SceneDelegate.swift */,
 				5B074B552972DB30007AD53D /* ViewController.swift */,
@@ -132,6 +142,40 @@
 				5B074B742972DB32007AD53D /* CourseWorkUITestsLaunchTests.swift */,
 			);
 			path = CourseWorkUITests;
+			sourceTree = "<group>";
+		};
+		5B24153A297B00E000805277 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5B241542297B025B00805277 /* General */,
+				5B24153B297B00F700805277 /* Core */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5B24153B297B00F700805277 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5B24153C297B014900805277 /* MainTabbarViewController.swift */,
+				5B24153E297B019E00805277 /* HomeViewController.swift */,
+				5B241540297B021700805277 /* FavouriteViewController.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		5B241542297B025B00805277 /* General */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		5B241545297B03E000805277 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5B241546297B040E00805277 /* TweetViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,8 +318,12 @@
 			files = (
 				5B074B822972DCDA007AD53D /* LoginViewController.swift in Sources */,
 				5B074B8A2972DDD2007AD53D /* RegisterViewController.swift in Sources */,
+				5B241547297B040E00805277 /* TweetViewController.swift in Sources */,
 				5B074B562972DB30007AD53D /* ViewController.swift in Sources */,
+				5B24153D297B014900805277 /* MainTabbarViewController.swift in Sources */,
+				5B241541297B021700805277 /* FavouriteViewController.swift in Sources */,
 				5B074B522972DB30007AD53D /* AppDelegate.swift in Sources */,
+				5B24153F297B019E00805277 /* HomeViewController.swift in Sources */,
 				5B074B542972DB30007AD53D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -108,6 +108,8 @@ class LoginViewController: UIViewController {
         navigationController?.pushViewController(rvc, animated: true)
     }
     
+
+    
     func setupConstraint(){
         titleLabel.snp.makeConstraints {make in
             make.top.equalToSuperview().offset(30)
