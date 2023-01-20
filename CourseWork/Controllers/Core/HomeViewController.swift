@@ -21,7 +21,7 @@ class HomeViewController: UIViewController {
         navigationItem.titleView = middleView
         
         
-    }
+    }     
     
 
     private let timelineTableView : UITableView = {
