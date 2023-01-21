@@ -23,6 +23,7 @@
 		5B24153F297B019E00805277 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B24153E297B019E00805277 /* HomeViewController.swift */; };
 		5B241541297B021700805277 /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B241540297B021700805277 /* FavouriteViewController.swift */; };
 		5B241547297B040E00805277 /* TweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B241546297B040E00805277 /* TweetViewController.swift */; };
+		5B2B8CAD297C5F7E002AED6B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B8CAC297C5F7E002AED6B /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		5B24153E297B019E00805277 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5B241540297B021700805277 /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
 		5B241546297B040E00805277 /* TweetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetViewController.swift; sourceTree = "<group>"; };
+		5B2B8CAC297C5F7E002AED6B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				5B241546297B040E00805277 /* TweetViewController.swift */,
+				5B2B8CAC297C5F7E002AED6B /* DetailViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				5B24153D297B014900805277 /* MainTabbarViewController.swift in Sources */,
 				5B241541297B021700805277 /* FavouriteViewController.swift in Sources */,
 				5B074B522972DB30007AD53D /* AppDelegate.swift in Sources */,
+				5B2B8CAD297C5F7E002AED6B /* DetailViewController.swift in Sources */,
 				5B24153F297B019E00805277 /* HomeViewController.swift in Sources */,
 				5B074B542972DB30007AD53D /* SceneDelegate.swift in Sources */,
 			);

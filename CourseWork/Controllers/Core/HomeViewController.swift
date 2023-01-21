@@ -65,9 +65,8 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-//        let vc = DetailViewController()
-//        vc.selectedMovie = movies[indexPath.row]
-//        self.navigationController?.pushViewController(vc, animated: true)
+        let vc = DetailViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
