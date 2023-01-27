@@ -6,166 +6,157 @@
 //
 
 import UIKit
-import SnapKit
+import Combine
 
 class LoginViewController: UIViewController {
     
-    let titleLabel : UILabel = {
-         let label1 = UILabel()
-         label1.translatesAutoresizingMaskIntoConstraints = false
-         label1.font = .systemFont(ofSize: 30, weight: .bold)
-         label1.textAlignment = .center
-         return label1
+    private var viewModel = AuthenticationViewViewModel()
+    private var subscriptions: Set<AnyCancellable> = []
+    
+    private let profileHeaderImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleToFill
+        imageView.image = UIImage(systemName: "person.circle")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
-    let descriptionLabel : UILabel = {
-         let label = UILabel()
-         label.translatesAutoresizingMaskIntoConstraints = false
-         label.font = .systemFont(ofSize: 20)
-         label.textAlignment = .center
-         label.textColor = .black
-         return label
+    private let loginTitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Login to Your Account"
+        label.font = .systemFont(ofSize: 28, weight: .bold)
+        label.textAlignment = .center
+        label.textColor = .red
+        return label
     }()
-    
-    var username : UITextField = {
-        let tf = UITextField()
-        tf.translatesAutoresizingMaskIntoConstraints = false
-        tf.font = .systemFont(ofSize: 15)
-        tf.textColor = .gray
-        tf.borderStyle = .roundedRect
-        tf.placeholder = "Username"
-        return tf
-    }()
-    
-    var password : UITextField = {
-        let pw = UITextField()
-        pw.translatesAutoresizingMaskIntoConstraints = false
-        pw.font = .systemFont(ofSize: 15)
-        pw.textColor = .gray
-        pw.borderStyle = .roundedRect
-        pw.placeholder = "Password"
-        return pw
-    }()
-    var button : UIButton = {
-        let btn = UIButton()
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.backgroundColor = .red
-        btn.frame = CGRectMake(80, 80, 80, 80)
-        return btn
-    }()
-    
-    let regLabel : UILabel = {
-         let label2 = UILabel()
-         label2.translatesAutoresizingMaskIntoConstraints = false
-         label2.font = .systemFont(ofSize: 18, weight: .regular)
-         label2.textAlignment = .center
-         return label2
-    }()
-    
-    let regbutton : UIButton = {
-        let regbtn = UIButton()
-        regbtn.translatesAutoresizingMaskIntoConstraints = false
-        regbtn.setTitle("Register Now", for: .normal)
-        regbtn.setTitleColor(.blue, for: .normal)
-        return regbtn
-    }()
-    
-    let viewHolder : UIStackView = {
-         let stack = UIStackView()
-         stack.axis = .vertical
-         stack.spacing = 20
-         stack.alignment = .leading
-         stack.translatesAutoresizingMaskIntoConstraints = false
-         return stack
-    }()
-    
-    let rvc = RegisterViewController()
 
+    
+    private let emailTextField : UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.keyboardType = .emailAddress
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "Email",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
+        )
+        return textField
+    }()
+    
+    private let passwordTextField : UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "Password",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
+        )
+        textField.isSecureTextEntry = true
+        return textField
+    }()
+    
+    private let loginButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Login", for: .normal)
+        button.tintColor = .white
+        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        button.backgroundColor = .systemBlue
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 25
+        button.isEnabled = false
+        return button
+    }()
+    
+    @objc private func didChangeEmailField() {
+        viewModel.email = emailTextField.text
+        viewModel.validateAuthenticationForm()
+    }
+    
+    @objc private func didChangePasswordField() {
+        viewModel.password = passwordTextField.text
+        viewModel.validateAuthenticationForm()
+    }
+    
+    private func bindViews(){
+        emailTextField.addTarget(self, action: #selector(didChangeEmailField), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(didChangePasswordField), for: .editingChanged)
+        viewModel.$isAuthenticationFormValid.sink { [weak self] validationState in
+            self?.loginButton.isEnabled = validationState
+        }
+        .store(in: &subscriptions)
+        
+        viewModel.$user.sink { [weak self] user in
+            guard user != nil else { return }
+            guard let vc = self?.navigationController?.viewControllers.first as? WelcomePageViewController else { return }
+            vc.dismiss(animated: true)
+        }
+        .store(in: &subscriptions)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .lightGray
-        
-        titleLabel.text = "Hello Again!"
-        descriptionLabel.text = "Welcome back you've been missed!"
-        button.setTitle("Sign In",for: .normal)
-        regLabel.text = "Not a Member?"
 
-        viewHolder.insertArrangedSubview(titleLabel, at: 0)
-        viewHolder.insertArrangedSubview(descriptionLabel, at: 1)
-        viewHolder.insertArrangedSubview(username, at: 2)
-        viewHolder.insertArrangedSubview(password, at: 3)
-        viewHolder.insertArrangedSubview(button, at: 4)
-        viewHolder.insertArrangedSubview(regLabel, at: 5)
-        viewHolder.insertArrangedSubview(regbutton, at: 6)
+        view.backgroundColor = .systemBackground
+        view.addSubview(profileHeaderImageView)
+        view.addSubview(loginTitleLabel)
+        view.addSubview(emailTextField)
+        view.addSubview(passwordTextField)
+        view.addSubview(loginButton)
         
-        view.addSubview(viewHolder)
-        setupConstraint()
+        loginButton.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
         
-        regbutton.addTarget(self, action: #selector(getNextAction), for: .touchUpInside)
+        configureConstraints()
+        bindViews()
     }
     
-    @objc func getNextAction(){
-        navigationController?.pushViewController(rvc, animated: true)
+    @objc private func didTapLogin() {
+        viewModel.loginUser()
     }
     
-
-    
-    func setupConstraint(){
-        titleLabel.snp.makeConstraints {make in
-            make.top.equalToSuperview().offset(30)
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
-//            make.height.equalTo(5)
-        }
+    private func configureConstraints() {
         
-        descriptionLabel.snp.makeConstraints {make in
-//            make.top.equalToSuperview().offset(50)
-            make.leading.equalToSuperview().offset(30)
-            make.trailing.equalToSuperview().offset(-20)
-            make.height.equalTo(80)
-        }
+        let profileHeaderImageViewConstraints = [
+            profileHeaderImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 140),
+            profileHeaderImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
+            profileHeaderImageView.widthAnchor.constraint(equalToConstant: 100),
+            profileHeaderImageView.heightAnchor.constraint(equalToConstant: 100)
+            
+        ]
         
-        username.snp.makeConstraints {make in
-//            make.top.equalToSuperview().offset(50)
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
-            make.height.equalTo(50)
-        }
+        let loginTitleLabelConstraint = [
+            loginTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 130),
+            
+        ]
         
-        password.snp.makeConstraints {make in
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
-            make.height.equalTo(50)
-        }
+        let emailTextFieldConstraints = [
+            emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            emailTextField.topAnchor.constraint(equalTo: loginTitleLabel.bottomAnchor, constant: 40),
+            emailTextField.widthAnchor.constraint(equalToConstant: view.frame.width - 40),
+            emailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emailTextField.heightAnchor.constraint(equalToConstant: 60)
+        ]
         
-        button.snp.makeConstraints {make in
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
-            make.height.equalTo(50)
-        }
+        let passwordTextFieldConstraints = [
+            passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 10),
+            passwordTextField.widthAnchor.constraint(equalToConstant: view.frame.width - 40),
+            passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 60)
+        ]
         
-        regLabel.snp.makeConstraints {make in
-            make.leading.equalToSuperview().offset(30)
-            make.trailing.equalToSuperview().offset(-20)
-//            make.height.equalTo(80)
-        }
+        let loginButtonConstraints = [
+            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100),
+            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
+            loginButton.widthAnchor.constraint(equalToConstant: 180),
+            loginButton.heightAnchor.constraint(equalToConstant: 50)
+        ]
         
-        self.view.addSubview(regbutton)
-        regbutton.snp.makeConstraints {make in
-            make.top.equalToSuperview().offset(380)
-            make.leading.equalToSuperview().offset(20)
-            make.bottom.equalToSuperview().offset(-100)
-            make.trailing.equalToSuperview().offset(-20)
-            make.height.equalTo(60)
-        }
-        
-        viewHolder.snp.makeConstraints {make in
-            make.top.equalToSuperview().offset(130)
-            make.leading.equalToSuperview().offset(5)
-            make.trailing.equalToSuperview().offset(-5)
-//            make.height.equalTo(50)
-        }
-
+        NSLayoutConstraint.activate(profileHeaderImageViewConstraints)
+        NSLayoutConstraint.activate(loginTitleLabelConstraint)
+        NSLayoutConstraint.activate(emailTextFieldConstraints)
+        NSLayoutConstraint.activate(passwordTextFieldConstraints)
+        NSLayoutConstraint.activate(loginButtonConstraints)
     }
 
 }

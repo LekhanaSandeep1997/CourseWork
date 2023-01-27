@@ -6,278 +6,177 @@
 //
 
 import UIKit
-import SnapKit
+import Combine
 
 class RegisterViewController: UIViewController {
     
-    let titleLabel : UILabel = {
-         let label1 = UILabel()
-         label1.translatesAutoresizingMaskIntoConstraints = false
-         label1.font = .systemFont(ofSize: 30, weight: .bold)
-         label1.textAlignment = .center
-         label1.textColor = .red
-         return label1
+    private var viewModel = AuthenticationViewViewModel()
+    private var subscriptions: Set<AnyCancellable> = []
+    
+    private let profileHeaderImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleToFill
+        imageView.image = UIImage(systemName: "person.circle")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
-    let descriptionLabel : UILabel = {
-         let label = UILabel()
-         label.translatesAutoresizingMaskIntoConstraints = false
-         label.font = .systemFont(ofSize: 20)
-         label.textAlignment = .center
-         label.textColor = .white
-         return label
+    private let registerTitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Create Your Account"
+        label.font = .systemFont(ofSize: 28, weight: .bold)
+        label.textAlignment = .center
+        label.textColor = .red
+        return label
     }()
     
-    var name : UITextField = {
-        let name = UITextField()
-        name.translatesAutoresizingMaskIntoConstraints = false
-        name.font = .systemFont(ofSize: 15)
-        name.textColor = .gray
-        name.borderStyle = .roundedRect
-        name.placeholder = "Name"
-        return name
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Fill the form to get Offers"
+        label.font = .systemFont(ofSize: 20, weight: .heavy)
+        label.textAlignment = .center
+        label.textColor = .systemBlue
+        return label
     }()
     
-    var address : UITextField = {
-        let address = UITextField()
-        address.translatesAutoresizingMaskIntoConstraints = false
-        address.font = .systemFont(ofSize: 15)
-        address.textColor = .gray
-        address.borderStyle = .roundedRect
-        address.placeholder = "Address"
-        return address
+    private let emailTextField : UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.keyboardType = .emailAddress
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "Email",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
+        )
+        return textField
     }()
     
-    var nic : UITextField = {
-        let nic = UITextField()
-        nic.translatesAutoresizingMaskIntoConstraints = false
-        nic.font = .systemFont(ofSize: 15)
-        nic.textColor = .gray
-        nic.borderStyle = .roundedRect
-        nic.placeholder = "NIC"
-        return nic
+    private let passwordTextField : UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "Password",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
+        )
+        textField.isSecureTextEntry = true
+        return textField
     }()
     
-    var email : UITextField = {
-        let email = UITextField()
-        email.translatesAutoresizingMaskIntoConstraints = false
-        email.font = .systemFont(ofSize: 15)
-        email.textColor = .gray
-        email.borderStyle = .roundedRect
-        email.placeholder = "Email"
-        return email
-    }()
-    
-    var password : UITextField = {
-        let password = UITextField()
-        password.translatesAutoresizingMaskIntoConstraints = false
-        password.font = .systemFont(ofSize: 15)
-        password.textColor = .gray
-        password.borderStyle = .roundedRect
-        password.placeholder = "Password"
-        return password
-    }()
-    
-    var phone : UITextField = {
-        let phone = UITextField()
-        phone.translatesAutoresizingMaskIntoConstraints = false
-        phone.font = .systemFont(ofSize: 15)
-        phone.textColor = .gray
-        phone.borderStyle = .roundedRect
-        phone.placeholder = "Phone"
-        return phone
-    }()
-    
-    let nameLabel : UILabel = {
-         let label1 = UILabel()
-         label1.translatesAutoresizingMaskIntoConstraints = false
-         label1.font = .systemFont(ofSize: 14, weight: .bold)
-         label1.textAlignment = .center
-         return label1
-    }()
-    
-    let addressLabel : UILabel = {
-         let label2 = UILabel()
-         label2.translatesAutoresizingMaskIntoConstraints = false
-         label2.font = .systemFont(ofSize: 14, weight: .bold)
-         label2.textAlignment = .center
-         return label2
-    }()
-    
-    let nicLabel : UILabel = {
-         let label3 = UILabel()
-         label3.translatesAutoresizingMaskIntoConstraints = false
-         label3.font = .systemFont(ofSize: 14, weight: .bold)
-         label3.textAlignment = .center
-         return label3
-    }()
-    
-    let emailLabel : UILabel = {
-         let label4 = UILabel()
-         label4.translatesAutoresizingMaskIntoConstraints = false
-         label4.font = .systemFont(ofSize: 14, weight: .bold)
-         label4.textAlignment = .center
-         return label4
-    }()
-    
-    let passwordLabel : UILabel = {
-         let label5 = UILabel()
-         label5.translatesAutoresizingMaskIntoConstraints = false
-         label5.font = .systemFont(ofSize: 14, weight: .bold)
-         label5.textAlignment = .center
-         return label5
-    }()
-    
-    let phoneLabel : UILabel = {
-         let label6 = UILabel()
-         label6.translatesAutoresizingMaskIntoConstraints = false
-         label6.font = .systemFont(ofSize: 14, weight: .bold)
-         label6.textAlignment = .center
-         return label6
-    }()
-    
-    var button : UIButton = {
-        let btn = UIButton()
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.backgroundColor = .red
-        btn.frame = CGRectMake(80, 80, 80, 80)
-        return btn
-    }()
-    
-    let viewHolder : UIStackView = {
-         let stack = UIStackView()
-         stack.axis = .vertical
-         stack.spacing = 20
-         stack.alignment = .leading
-         stack.translatesAutoresizingMaskIntoConstraints = false
-         return stack
+    private let registerButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Create Account", for: .normal)
+        button.tintColor = .white
+        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        button.backgroundColor = .systemBlue
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 25
+        button.isEnabled = false
+        return button
     }()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .lightGray
-        
-        titleLabel.text = "Register Now"
-        descriptionLabel.text = "Please fill the form"
-        nameLabel.text = "Name"
-        addressLabel.text = "Address"
-        nicLabel.text = "NIC"
-        emailLabel.text = "Email"
-        passwordLabel.text = "Password"
-        phoneLabel.text = "Phone"
-        button.setTitle("Register",for: .normal)
-        
-        viewHolder.insertArrangedSubview(titleLabel, at: 0)
-        viewHolder.insertArrangedSubview(descriptionLabel, at: 1)
-        viewHolder.insertArrangedSubview(nameLabel, at: 2)
-        viewHolder.insertArrangedSubview(name, at: 3)
-        viewHolder.insertArrangedSubview(addressLabel, at: 4)
-        viewHolder.insertArrangedSubview(address, at: 5)
-        viewHolder.insertArrangedSubview(nicLabel, at: 6)
-        viewHolder.insertArrangedSubview(nic, at: 7)
-        viewHolder.insertArrangedSubview(emailLabel, at: 8)
-        viewHolder.insertArrangedSubview(email, at: 9)
-        viewHolder.insertArrangedSubview(passwordLabel, at: 10)
-        viewHolder.insertArrangedSubview(password, at: 11)
-        viewHolder.insertArrangedSubview(phoneLabel, at: 12)
-        viewHolder.insertArrangedSubview(phone, at: 13)
-        viewHolder.insertArrangedSubview(button, at: 14)
-
-        view.addSubview(viewHolder)
-        setupConstraint()
+    @objc private func didChangeEmailField() {
+        viewModel.email = emailTextField.text
+        viewModel.validateAuthenticationForm()
     }
     
-    func setupConstraint(){
-        titleLabel.snp.makeConstraints {make in
-            make.top.equalToSuperview().offset(0)
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
+    @objc private func didChangePasswordField() {
+        viewModel.password = passwordTextField.text
+        viewModel.validateAuthenticationForm()
+    }
+    
+    private func bindViews(){
+        emailTextField.addTarget(self, action: #selector(didChangeEmailField), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(didChangePasswordField), for: .editingChanged)
+        viewModel.$isAuthenticationFormValid.sink { [weak self] validationState in
+            self?.registerButton.isEnabled = validationState
         }
+        .store(in: &subscriptions)
         
-        descriptionLabel.snp.makeConstraints {make in
-            make.leading.equalToSuperview().offset(30)
-            make.trailing.equalToSuperview().offset(-20)
-//            make.height.equalTo(80)
+        viewModel.$user.sink { [weak self] user in
+            guard user != nil else { return }
+            guard let vc = self?.navigationController?.viewControllers.first as? WelcomePageViewController else { return }
+            vc.dismiss(animated: true)
         }
+        .store(in: &subscriptions)
+    }
+    
+    @objc private func didTapToDismiss(){
+        view.endEditing(true)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.backgroundColor = .systemBackground
+        view.addSubview(profileHeaderImageView)
+        view.addSubview(registerTitleLabel)
+        view.addSubview(descriptionLabel)
+        view.addSubview(emailTextField)
+        view.addSubview(passwordTextField)
+        view.addSubview(registerButton)
+    
+        registerButton.addTarget(self, action: #selector(didTapRegister), for: .touchUpInside)
+        configureConstraints()
+        bindViews()
         
-        nameLabel.snp.makeConstraints {make in
-            make.leading.equalToSuperview().offset(0)
-            make.trailing.equalToSuperview().offset(-280)
-//            make.bottom.equalToSuperview().offset(20)
-        }
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToDismiss)))
+    }
+    
+    @objc private func didTapRegister() {
+        viewModel.createUser()
+    }
+    
+    private func configureConstraints() {
         
-        name.snp.makeConstraints {make in
-            make.leading.equalToSuperview().offset(25)
-            make.trailing.equalToSuperview().offset(-20)
-//            make.height.equalTo(80)
-        }
+        let profileHeaderImageViewConstraints = [
+            profileHeaderImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 140),
+            profileHeaderImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
+            profileHeaderImageView.widthAnchor.constraint(equalToConstant: 100),
+            profileHeaderImageView.heightAnchor.constraint(equalToConstant: 100)
+            
+        ]
         
-        addressLabel.snp.makeConstraints {make in
-            make.leading.equalToSuperview().offset(0)
-            make.trailing.equalToSuperview().offset(-270)
-        }
+        let registerTitleLabelConstraint = [
+            registerTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            registerTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 130),
+            
+        ]
         
-        address.snp.makeConstraints {make in
-            make.leading.equalToSuperview().offset(25)
-            make.trailing.equalToSuperview().offset(-20)
-//            make.height.equalTo(80)
-        }
+        let descriptionConstraint = [
+            descriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            descriptionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 180),
+        ]
         
-        nicLabel.snp.makeConstraints {make in
-            make.leading.equalToSuperview().offset(0)
-            make.trailing.equalToSuperview().offset(-300)
-        }
+        let emailTextFieldConstraints = [
+            emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            emailTextField.topAnchor.constraint(equalTo: registerTitleLabel.bottomAnchor, constant: 60),
+            emailTextField.widthAnchor.constraint(equalToConstant: view.frame.width - 40),
+            emailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emailTextField.heightAnchor.constraint(equalToConstant: 60)
+        ]
         
-        nic.snp.makeConstraints {make in
-            make.leading.equalToSuperview().offset(25)
-            make.trailing.equalToSuperview().offset(-20)
-//            make.height.equalTo(80)
-        }
+        let passwordTextFieldConstraints = [
+            passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 10),
+            passwordTextField.widthAnchor.constraint(equalToConstant: view.frame.width - 40),
+            passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 60)
+        ]
         
-        emailLabel.snp.makeConstraints {make in
-            make.leading.equalToSuperview().offset(0)
-            make.trailing.equalToSuperview().offset(-290)
-        }
+        let registerButtonConstraints = [
+            registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100),
+            registerButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
+            registerButton.widthAnchor.constraint(equalToConstant: 180),
+            registerButton.heightAnchor.constraint(equalToConstant: 50)
+        ]
         
-        email.snp.makeConstraints {make in
-            make.leading.equalToSuperview().offset(25)
-            make.trailing.equalToSuperview().offset(-20)
-//            make.height.equalTo(80)
-        }
-        
-        passwordLabel.snp.makeConstraints {make in
-            make.leading.equalToSuperview().offset(0)
-            make.trailing.equalToSuperview().offset(-260)
-        }
-        
-        password.snp.makeConstraints {make in
-            make.leading.equalToSuperview().offset(25)
-            make.trailing.equalToSuperview().offset(-20)
-//            make.height.equalTo(80)
-        }
-        
-        phoneLabel.snp.makeConstraints {make in
-            make.leading.equalToSuperview().offset(0)
-            make.trailing.equalToSuperview().offset(-280)
-        }
-        
-        phone.snp.makeConstraints {make in
-            make.leading.equalToSuperview().offset(25)
-            make.trailing.equalToSuperview().offset(-20)
-//            make.height.equalTo(80)
-        }
-        
-        button.snp.makeConstraints {make in
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
-            make.height.equalTo(50)
-        }
-        
-        viewHolder.snp.makeConstraints {make in
-            make.top.equalToSuperview().offset(130)
-            make.leading.equalToSuperview().offset(5)
-            make.trailing.equalToSuperview().offset(-5)
-        }
-        
+        NSLayoutConstraint.activate(profileHeaderImageViewConstraints)
+        NSLayoutConstraint.activate(registerTitleLabelConstraint)
+        NSLayoutConstraint.activate(descriptionConstraint)
+        NSLayoutConstraint.activate(emailTextFieldConstraints)
+        NSLayoutConstraint.activate(passwordTextFieldConstraints)
+        NSLayoutConstraint.activate(registerButtonConstraints)
     }
 }
