@@ -1,15 +1,17 @@
 //
-//  TweetViewController.swift
+//  FoodViewController.swift
 //  CourseWork
 //
 //  Created by Lekhana on 1/20/23.
 //
 
 import UIKit
+import SDWebImage
 
-class TweetViewController: UITableViewCell {
+class FoodViewController: UITableViewCell {
 
-    static let identifier = "TweetTableViewCell"
+    static let identifier = "FoodTableViewCell"
+//    @Published private var vm = FoodViewViewModel()
     
     private let avatarImageView : UIImageView = {
         let imageView = UIImageView()
@@ -18,44 +20,40 @@ class TweetViewController: UITableViewCell {
         imageView.layer.cornerRadius = 25
         imageView.layer.masksToBounds = true
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "pizza 2")
+//        imageView.image = UIImage(named: "pizza 2")
         imageView.backgroundColor = .black
         return imageView
     }()
     
     private let displayNameLabel : UILabel = {
         let label = UILabel()
-        label.text = "Pizza"
+//        label.text = "Pizza"
         label.font = .systemFont(ofSize: 18, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let usernameLabel : UILabel = {
-        let label = UILabel()
-        label.text = "Rs.1050.00"
-        label.textColor = .secondaryLabel
-        label.font = .systemFont(ofSize: 16, weight: .regular)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
     
-    private let tweetTextContentLabel : UILabel = {
+    private let foodTextContentLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "This is my mockup tweet. It is going to take multiple lines. I believe some more text is enough but lets add some anyway.."
+//        label.text = "This is my mockup tweet. It is going to take multiple lines. I believe some more text is enough but lets add some anyway.."
         label.numberOfLines = 0
         return label
     }()
-    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(avatarImageView)
         contentView.addSubview(displayNameLabel)
-        contentView.addSubview(usernameLabel)
-        contentView.addSubview(tweetTextContentLabel)
+        contentView.addSubview(foodTextContentLabel)
         configureConstraints()
+    }
+    
+    func configureFood(with name: String, description: String, avatarPath: String, nutritionlevel: String, ingredients: String) {
+        displayNameLabel.text = name
+        foodTextContentLabel.text = description
+        avatarImageView.sd_setImage(with: URL(string: avatarPath))
     }
     
     private func configureConstraints() {
@@ -71,22 +69,18 @@ class TweetViewController: UITableViewCell {
             displayNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20)
         ]
         
-        let usernameLabelConstraints = [
-            usernameLabel.leadingAnchor.constraint(equalTo: displayNameLabel.trailingAnchor, constant: 10),
-            usernameLabel.centerYAnchor.constraint(equalTo: displayNameLabel.centerYAnchor)
-        ]
+
         
-        let tweetTextContentLabelConstraints = [
-            tweetTextContentLabel.leadingAnchor.constraint(equalTo: displayNameLabel.leadingAnchor),
-            tweetTextContentLabel.topAnchor.constraint(equalTo: displayNameLabel.bottomAnchor, constant: 10),
-            tweetTextContentLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
-            tweetTextContentLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15)
+        let foodTextContentLabelConstraints = [
+            foodTextContentLabel.leadingAnchor.constraint(equalTo: displayNameLabel.leadingAnchor),
+            foodTextContentLabel.topAnchor.constraint(equalTo: displayNameLabel.bottomAnchor, constant: 10),
+            foodTextContentLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            foodTextContentLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15)
         ]
         
         NSLayoutConstraint.activate(avatarImageViewConstraints)
         NSLayoutConstraint.activate(displayNameLabelConstraints)
-        NSLayoutConstraint.activate(usernameLabelConstraints)
-        NSLayoutConstraint.activate(tweetTextContentLabelConstraints)
+        NSLayoutConstraint.activate(foodTextContentLabelConstraints)
     }
     
     required init?(coder: NSCoder){

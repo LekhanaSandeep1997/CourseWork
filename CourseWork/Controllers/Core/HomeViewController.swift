@@ -7,11 +7,15 @@
 
 import UIKit
 import FirebaseAuth
+import Combine
 
 class HomeViewController: UIViewController {
+    
+    private var viewModel = FoodViewViewModel()
+    private var subscriptions: Set<AnyCancellable> = []
 
     private func configureNavigationBar() {
-        let size : CGFloat = 46
+        let size : CGFloat = 48
         let logoImageView = UIImageView(frame: CGRect(x : 0, y: 0, width: size, height: size))
         logoImageView.contentMode = .scaleAspectFill
         logoImageView.image = UIImage(systemName: "timelapse")
@@ -20,12 +24,12 @@ class HomeViewController: UIViewController {
         middleView.addSubview(logoImageView)
         
         navigationItem.titleView = middleView
-        
+
     }
 
     private let timelineTableView : UITableView = {
         let tableView = UITableView()
-        tableView.register(TweetViewController.self, forCellReuseIdentifier: TweetViewController.identifier)
+        tableView.register(FoodViewController.self, forCellReuseIdentifier: FoodViewController.identifier)
         return tableView
     }()
     
@@ -41,6 +45,13 @@ class HomeViewController: UIViewController {
     @objc private func didTapSignOut(){
         try? Auth.auth().signOut()
         handleAuthentication()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+        handleAuthentication()
+        viewModel.retreiveUser()
     }
     
     override func viewDidLayoutSubviews() {
@@ -73,14 +84,19 @@ class HomeViewController: UIViewController {
 extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.food.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TweetViewController.identifier, for: indexPath) as? TweetViewController else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FoodViewController.identifier, for: indexPath) as? FoodViewController else {
             return UITableViewCell()
         }
-        
+        let foodModel = viewModel.food[indexPath.row]
+        cell.configureFood(with: foodModel.name,
+                            description: foodModel.description,
+                            avatarPath: foodModel.ingredients,
+                            nutritionlevel: foodModel.nutritionlevel,
+                            ingredients: foodModel.avatarPath)
         return cell
     }
     
@@ -90,3 +106,4 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+
