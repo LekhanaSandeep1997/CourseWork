@@ -11,23 +11,33 @@ import SnapKit
 
 
 class DetailViewController: UIViewController {
-    
-    
+
+    static let identifier = "TweerViewController"
+    @Published var products: FoodData?
+
     let poster : UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
-    
-    let titleLabel : UILabel = {
+
+    let foodname : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 30, weight: .bold)
         label.textColor = .red
         return label
     }()
-    let descriptionLabel : UILabel = {
+    
+    private let foodDetail : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    let sugarLevel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 18, weight: .regular)
@@ -35,13 +45,34 @@ class DetailViewController: UIViewController {
         label.numberOfLines = 0
         return label
     }()
-    let priceLabel : UILabel = {
+    
+    let saltLevel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 20, weight: .regular)
+        label.font = .systemFont(ofSize: 18, weight: .regular)
         label.textColor = .white
+        label.numberOfLines = 0
         return label
     }()
+    
+    let fatLevel : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 18, weight: .regular)
+        label.textColor = .white
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    let caloriesLevel : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 18, weight: .regular)
+        label.textColor = .white
+        label.numberOfLines = 0
+        return label
+    }()
+
     let button : UIButton = {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
@@ -53,14 +84,24 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        poster.image = UIImage(named: "pizza")
-        titleLabel.text = "Classic Cheese Pizza"
-        priceLabel.text = "Rs. 1050.00"
-        descriptionLabel.text = "This is my mockup tweet. It is going to take multiple lines. I believe some more text is enough but lets add some anyway.."
+//        poster.image = UIImage(named: "pizza")
+
         self.view.backgroundColor = .systemBackground
         setupConstraint()
+        
+        configureProducts(with: products!)
     }
-    
+
+    func configureProducts(with model: FoodData) {
+        foodname.text = model.name
+        foodDetail.text = model.bio
+        sugarLevel.text = model.sugarLevel
+        saltLevel.text = model.saltLevel
+        fatLevel.text = model.fatLevel
+        caloriesLevel.text = model.caloriesLevel
+        poster.sd_setImage(with: URL(string: model.avatarPath))
+    }
+
     func setupConstraint(){
         self.view.addSubview(poster)
         poster.snp.makeConstraints{ make in
@@ -68,11 +109,11 @@ class DetailViewController: UIViewController {
             make.height.equalTo(400)
             make.leading.trailing.equalToSuperview()
         }
-        let holder = UIStackView(arrangedSubviews: [titleLabel, priceLabel, descriptionLabel])
+        let holder = UIStackView(arrangedSubviews: [foodname, foodDetail, sugarLevel, saltLevel, fatLevel, caloriesLevel])
         holder.spacing = 10
         holder.axis = .vertical
         self.view.addSubview(holder)
-        
+
         holder.snp.makeConstraints{ make in
             make.top.equalTo(poster.snp_bottomMargin).offset(40)
             make.leading.equalTo(view.snp_leadingMargin).offset(20)

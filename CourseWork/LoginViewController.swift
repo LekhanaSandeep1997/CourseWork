@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
         return label
     }()
 
-    
+     
     private let emailTextField : UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -80,7 +80,7 @@ class LoginViewController: UIViewController {
     private func bindViews(){
         emailTextField.addTarget(self, action: #selector(didChangeEmailField), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(didChangePasswordField), for: .editingChanged)
-        viewModel.$isAuthenticationFormValid.sink { [weak self] validationState in
+        viewModel.$isAuthenticationForValid.sink { [weak self] validationState in
             self?.loginButton.isEnabled = validationState
         }
         .store(in: &subscriptions)
@@ -91,6 +91,19 @@ class LoginViewController: UIViewController {
             vc.dismiss(animated: true)
         }
         .store(in: &subscriptions)
+    
+        viewModel.$error.sink { [weak self] errorString in
+            guard let error = errorString else { return }
+            self?.presentAlert(with: error)
+        }
+        .store(in: &subscriptions)
+    }
+    
+    private func presentAlert(with error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        let okayButton = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okayButton)
+        present(alert, animated: true)
     }
     
     override func viewDidLoad() {

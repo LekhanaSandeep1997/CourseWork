@@ -89,7 +89,7 @@ class RegisterViewController: UIViewController {
     private func bindViews(){
         emailTextField.addTarget(self, action: #selector(didChangeEmailField), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(didChangePasswordField), for: .editingChanged)
-        viewModel.$isAuthenticationFormValid.sink { [weak self] validationState in
+        viewModel.$isAuthenticationForValid.sink { [weak self] validationState in
             self?.registerButton.isEnabled = validationState
         }
         .store(in: &subscriptions)
@@ -100,6 +100,19 @@ class RegisterViewController: UIViewController {
             vc.dismiss(animated: true)
         }
         .store(in: &subscriptions)
+        
+        viewModel.$error.sink { [weak self] errorString in
+            guard let error = errorString else { return }
+            self?.presentAlert(with: error)
+        }
+        .store(in: &subscriptions)
+    }
+    
+    private func presentAlert(with error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        let okayButton = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okayButton)
+        present(alert, animated: true)
     }
     
     @objc private func didTapToDismiss(){

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B06051A2986EE5700D34507 /* FoodComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0605192986EE5700D34507 /* FoodComposeViewController.swift */; };
 		5B074B522972DB30007AD53D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B074B512972DB30007AD53D /* AppDelegate.swift */; };
 		5B074B542972DB30007AD53D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B074B532972DB30007AD53D /* SceneDelegate.swift */; };
 		5B074B562972DB30007AD53D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B074B552972DB30007AD53D /* ViewController.swift */; };
@@ -22,8 +23,11 @@
 		5B24153D297B014900805277 /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B24153C297B014900805277 /* MainTabbarViewController.swift */; };
 		5B24153F297B019E00805277 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B24153E297B019E00805277 /* HomeViewController.swift */; };
 		5B241541297B021700805277 /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B241540297B021700805277 /* FavouriteViewController.swift */; };
-		5B241547297B040E00805277 /* TweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B241546297B040E00805277 /* TweetViewController.swift */; };
+		5B241547297B040E00805277 /* FoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B241546297B040E00805277 /* FoodViewController.swift */; };
 		5B2B8CAD297C5F7E002AED6B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2B8CAC297C5F7E002AED6B /* DetailViewController.swift */; };
+		5B57D70229883375006667EA /* FoodComposeViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B57D70129883375006667EA /* FoodComposeViewViewModel.swift */; };
+		5B5DF5E6298EC41500434794 /* FoodData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DF5E5298EC41500434794 /* FoodData.swift */; };
+		5B5DF5E8298EC85200434794 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DF5E7298EC85200434794 /* StorageManager.swift */; };
 		5BB9BDD92983B7F3002FA4E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BB9BDD82983B7F2002FA4E3 /* GoogleService-Info.plist */; };
 		5BB9BDDC2983B997002FA4E3 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5BB9BDDB2983B997002FA4E3 /* FirebaseAuth */; };
 		5BB9BDDE2983B997002FA4E3 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 5BB9BDDD2983B997002FA4E3 /* FirebaseAuthCombine-Community */; };
@@ -37,6 +41,10 @@
 		5BB9BDEE2983BD62002FA4E3 /* WelcomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB9BDED2983BD62002FA4E3 /* WelcomePageViewController.swift */; };
 		5BB9BDF129840BB3002FA4E3 /* AuthenticationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB9BDF029840BB3002FA4E3 /* AuthenticationViewViewModel.swift */; };
 		5BB9BDF4298411F0002FA4E3 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB9BDF3298411F0002FA4E3 /* AuthManager.swift */; };
+		5BFAD1DA298F6001002078E1 /* HomeViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFAD1D9298F6001002078E1 /* HomeViewViewModel.swift */; };
+		5BFAD1DD298F6F08002078E1 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 5BFAD1DC298F6F08002078E1 /* SDWebImage */; };
+		5BFC796F29867934004ADE5C /* TwitterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFC796E29867934004ADE5C /* TwitterUser.swift */; };
+		5BFC79712986801F004ADE5C /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFC79702986801F004ADE5C /* DatabaseManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B0605192986EE5700D34507 /* FoodComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodComposeViewController.swift; sourceTree = "<group>"; };
 		5B074B4E2972DB30007AD53D /* CourseWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CourseWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B074B512972DB30007AD53D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B074B532972DB30007AD53D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,12 +83,18 @@
 		5B24153C297B014900805277 /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewController.swift; sourceTree = "<group>"; };
 		5B24153E297B019E00805277 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5B241540297B021700805277 /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
-		5B241546297B040E00805277 /* TweetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetViewController.swift; sourceTree = "<group>"; };
+		5B241546297B040E00805277 /* FoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewController.swift; sourceTree = "<group>"; };
 		5B2B8CAC297C5F7E002AED6B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		5B57D70129883375006667EA /* FoodComposeViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodComposeViewViewModel.swift; sourceTree = "<group>"; };
+		5B5DF5E5298EC41500434794 /* FoodData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodData.swift; sourceTree = "<group>"; };
+		5B5DF5E7298EC85200434794 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		5BB9BDD82983B7F2002FA4E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5BB9BDED2983BD62002FA4E3 /* WelcomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageViewController.swift; sourceTree = "<group>"; };
 		5BB9BDF029840BB3002FA4E3 /* AuthenticationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewViewModel.swift; sourceTree = "<group>"; };
 		5BB9BDF3298411F0002FA4E3 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		5BFAD1D9298F6001002078E1 /* HomeViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewViewModel.swift; sourceTree = "<group>"; };
+		5BFC796E29867934004ADE5C /* TwitterUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterUser.swift; sourceTree = "<group>"; };
+		5BFC79702986801F004ADE5C /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +108,7 @@
 				5BB9BDE02983B997002FA4E3 /* FirebaseDatabase in Frameworks */,
 				5BB9BDEA2983B997002FA4E3 /* FirebaseStorage in Frameworks */,
 				5B074B882972DD61007AD53D /* Kingfisher in Frameworks */,
+				5BFAD1DD298F6F08002078E1 /* SDWebImage in Frameworks */,
 				5BB9BDDC2983B997002FA4E3 /* FirebaseAuth in Frameworks */,
 				5B074B852972DD2F007AD53D /* SnapKit in Frameworks */,
 				5BB9BDDE2983B997002FA4E3 /* FirebaseAuthCombine-Community in Frameworks */,
@@ -141,6 +157,7 @@
 		5B074B502972DB30007AD53D /* CourseWork */ = {
 			isa = PBXGroup;
 			children = (
+				5BFC796D29867901004ADE5C /* Models */,
 				5BB9BDF2298411DA002FA4E3 /* Managers */,
 				5BB9BDEF29840B95002FA4E3 /* ViewModel */,
 				5B241545297B03E000805277 /* Views */,
@@ -197,6 +214,7 @@
 		5B241542297B025B00805277 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				5B0605192986EE5700D34507 /* FoodComposeViewController.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -204,7 +222,7 @@
 		5B241545297B03E000805277 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5B241546297B040E00805277 /* TweetViewController.swift */,
+				5B241546297B040E00805277 /* FoodViewController.swift */,
 				5B2B8CAC297C5F7E002AED6B /* DetailViewController.swift */,
 				5BB9BDED2983BD62002FA4E3 /* WelcomePageViewController.swift */,
 			);
@@ -215,6 +233,8 @@
 			isa = PBXGroup;
 			children = (
 				5BB9BDF029840BB3002FA4E3 /* AuthenticationViewViewModel.swift */,
+				5B57D70129883375006667EA /* FoodComposeViewViewModel.swift */,
+				5BFAD1D9298F6001002078E1 /* HomeViewViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -223,8 +243,19 @@
 			isa = PBXGroup;
 			children = (
 				5BB9BDF3298411F0002FA4E3 /* AuthManager.swift */,
+				5BFC79702986801F004ADE5C /* DatabaseManager.swift */,
+				5B5DF5E7298EC85200434794 /* StorageManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		5BFC796D29867901004ADE5C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5BFC796E29867934004ADE5C /* TwitterUser.swift */,
+				5B5DF5E5298EC41500434794 /* FoodData.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +286,7 @@
 				5BB9BDE72983B997002FA4E3 /* FirebaseFirestoreSwift */,
 				5BB9BDE92983B997002FA4E3 /* FirebaseStorage */,
 				5BB9BDEB2983B997002FA4E3 /* FirebaseStorageCombine-Community */,
+				5BFAD1DC298F6F08002078E1 /* SDWebImage */,
 			);
 			productName = CourseWork;
 			productReference = 5B074B4E2972DB30007AD53D /* CourseWork.app */;
@@ -332,6 +364,7 @@
 				5B074B832972DD2F007AD53D /* XCRemoteSwiftPackageReference "SnapKit" */,
 				5B074B862972DD61007AD53D /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				5BB9BDDA2983B997002FA4E3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				5BFAD1DB298F6F08002078E1 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 5B074B4F2972DB30007AD53D /* Products */;
 			projectDirPath = "";
@@ -378,16 +411,23 @@
 			files = (
 				5B074B822972DCDA007AD53D /* LoginViewController.swift in Sources */,
 				5B074B8A2972DDD2007AD53D /* RegisterViewController.swift in Sources */,
+				5BFC79712986801F004ADE5C /* DatabaseManager.swift in Sources */,
+				5B5DF5E6298EC41500434794 /* FoodData.swift in Sources */,
 				5BB9BDF129840BB3002FA4E3 /* AuthenticationViewViewModel.swift in Sources */,
 				5BB9BDF4298411F0002FA4E3 /* AuthManager.swift in Sources */,
-				5B241547297B040E00805277 /* TweetViewController.swift in Sources */,
+				5B241547297B040E00805277 /* FoodViewController.swift in Sources */,
 				5B074B562972DB30007AD53D /* ViewController.swift in Sources */,
+				5BFC796F29867934004ADE5C /* TwitterUser.swift in Sources */,
+				5B5DF5E8298EC85200434794 /* StorageManager.swift in Sources */,
+				5BFAD1DA298F6001002078E1 /* HomeViewViewModel.swift in Sources */,
 				5B24153D297B014900805277 /* MainTabbarViewController.swift in Sources */,
 				5B241541297B021700805277 /* FavouriteViewController.swift in Sources */,
 				5B074B522972DB30007AD53D /* AppDelegate.swift in Sources */,
+				5B57D70229883375006667EA /* FoodComposeViewViewModel.swift in Sources */,
 				5B2B8CAD297C5F7E002AED6B /* DetailViewController.swift in Sources */,
 				5B24153F297B019E00805277 /* HomeViewController.swift in Sources */,
 				5BB9BDEE2983BD62002FA4E3 /* WelcomePageViewController.swift in Sources */,
+				5B06051A2986EE5700D34507 /* FoodComposeViewController.swift in Sources */,
 				5B074B542972DB30007AD53D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -746,6 +786,14 @@
 				minimumVersion = 9.6.0;
 			};
 		};
+		5BFAD1DB298F6F08002078E1 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -803,6 +851,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5BB9BDDA2983B997002FA4E3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		5BFAD1DC298F6F08002078E1 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5BFAD1DB298F6F08002078E1 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

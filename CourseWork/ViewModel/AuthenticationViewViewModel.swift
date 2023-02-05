@@ -11,20 +11,21 @@ import Combine
 
 final class AuthenticationViewViewModel: ObservableObject{
     
-    @Published var email: String?
+    @Published var email : String?
     @Published var password: String?
-    @Published var isAuthenticationFormValid: Bool = false
+    @Published var isAuthenticationForValid: Bool = false
     @Published var user: User?
+    @Published var error: String?
     
-    private var subscription: Set<AnyCancellable> = []
+    private var subscriptions: Set<AnyCancellable> = []
     
-    func validateAuthenticationForm() {
+    func validateAuthenticationForm(){
         guard let email = email,
               let password = password else {
-            isAuthenticationFormValid = false
+            isAuthenticationForValid = false
             return
         }
-        isAuthenticationFormValid = isValidEmail(email) && password.count >= 8
+        isAuthenticationForValid = isValidEmail(email) && password.count >= 8
     }
     
     func isValidEmail(_ email: String) -> Bool {
@@ -34,27 +35,50 @@ final class AuthenticationViewViewModel: ObservableObject{
         return emailPred.evaluate(with: email)
     }
     
-    func createUser() {
+    func createUser(){
         guard let email = email,
               let password = password else { return }
         AuthManager.shared.registerUser(with: email, password: password)
-            .sink { _ in
+            .handleEvents(receiveOutput: { [weak self] user in
+                self?.user = user
+            })
+            .sink { [weak self] completion in
+                
+                if case .failure(let error) = completion {
+                    self?.error = error.localizedDescription
+                }
                 
             } receiveValue: { [weak self] user in
-                self?.user = user
+                self?.createRecord(for: user)
             }
-            .store(in: &subscription)
+            .store(in: &subscriptions)
     }
     
-    func loginUser() {
+    func createRecord(for user: User) {
+        DatabaseManager.shared.collectionUsers(add: user)
+            .sink { [weak self] completion in
+                if case .failure(let error) = completion {
+                    self?.error = error.localizedDescription
+                }
+            } receiveValue: { state in
+                print("Adding user record is database: \(state)")
+            }
+            .store(in: &subscriptions)
+    }
+    
+    func loginUser(){
         guard let email = email,
               let password = password else { return }
         AuthManager.shared.loginUser(with: email, password: password)
-            .sink { _ in
+            .sink { [weak self] completion in
+                
+                if case .failure(let error) = completion {
+                    self?.error = error.localizedDescription
+                }
                 
             } receiveValue: { [weak self] user in
                 self?.user = user
             }
-            .store(in: &subscription)
+            .store(in: &subscriptions)
     }
 }
