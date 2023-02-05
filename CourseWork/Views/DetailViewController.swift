@@ -113,6 +113,7 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.addSubview(foodname)
         view.addSubview(foodDetail)
         view.addSubview(sugarLevel)
@@ -167,7 +168,7 @@ class DetailViewController: UIViewController {
         
         let avatarImageViewConstraints = [
             poster.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            poster.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+            poster.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
             poster.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             poster.heightAnchor.constraint(equalToConstant: 5)
         ]
@@ -175,7 +176,7 @@ class DetailViewController: UIViewController {
         let foodNameConstraints = [
             foodname.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             foodname.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            foodname.topAnchor.constraint(equalTo: poster.bottomAnchor, constant: 120),
+            foodname.topAnchor.constraint(equalTo: poster.bottomAnchor, constant: 180),
             foodname.heightAnchor.constraint(equalToConstant: 30)
         ]
 
